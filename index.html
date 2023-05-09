@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Slider</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="container">
+            <div class="slider-wrapper" tabindex="0">
+
+                <div class="item" @mouseover="autoPlayOFF" @mouseleave="autoPlayON">
+                    <img :src="slides[currentImage].image" alt="slides[currentImage].title" />
+                    <div class="text">
+                        <h3>{{slides[currentImage].title}}</h3>
+                        <p>
+                            {{slides[currentImage].text}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="thumbs">
+                    <div class="prev" @click="prevSlide()"></div>
+                    <div class="next" @click="nextSlide()"></div>
+                    <template v-for="(film,i) in slides">
+                        <div :class="currentImage==i ? 'thumb active':'thumb'" @click="currentImage=i">
+                            <img :src="film.image" :alt="film.title" />
+                        </div>
+                    </template>
+
+                </div>
+                <button @click="autoPlay()">{{autoTimer==null? "start autoplay" : "stop autoplay"}}</button>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
